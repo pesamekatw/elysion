@@ -29,9 +29,12 @@ export default function SidePanel({ isOpen, onClose, spot, language = 'en' }) {
           <a 
             className="btn-primary" 
             href={(function(){
-              const [lat, lng] = spot.coordinates;
-              const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-              return isIOS ? `https://maps.apple.com/?q=${lat},${lng}` : `https://maps.google.com/?q=${lat},${lng}`;
+              const [destLat, destLng] = spot.coordinates;
+              const originText = encodeURIComponent("Στεφάνου Τσουρη 69, Χίος 821 00");
+              const isIOS = typeof navigator !== 'undefined' && (/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+              return isIOS 
+                ? `https://maps.apple.com/?saddr=${originText}&daddr=${destLat},${destLng}` 
+                : `https://www.google.com/maps/dir/?api=1&origin=${originText}&destination=${destLat},${destLng}`;
             })()}
             target="_blank"
             rel="noopener noreferrer"

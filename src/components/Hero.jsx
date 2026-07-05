@@ -7,9 +7,9 @@ export default function Hero({ language = 'en', setLanguage }) {
   };
 
   const t = {
-    en: { welcome: 'Welcome to Chios', subtitle: 'Your ultimate digital guidebook to the island.', explore: 'Explore the Island' },
-    el: { welcome: 'Καλώς ήρθατε στη Χίο', subtitle: 'Ο ψηφιακός σας οδηγός για το νησί.', explore: 'Εξερευνήστε' },
-    tr: { welcome: 'Sakız Adasına Hoşgeldiniz', subtitle: 'Adayı keşfetmek için dijital rehberiniz.', explore: 'Adayı Keşfet' }
+    en: { welcome: 'Welcome to Elysion Apartments', subtitle: 'Your ultimate digital guidebook to the island.', explore: 'Explore the Island' },
+    el: { welcome: 'Καλώς ήρθατε στο Elysion Apartments', subtitle: 'Ο ψηφιακός σας οδηγός για το νησί.', explore: 'Εξερευνήστε' },
+    tr: { welcome: 'Elysion Apartments\'a Hoşgeldiniz', subtitle: 'Adayı keşfetmek için dijital rehberiniz.', explore: 'Adayı Keşfet' }
   }[language];
 
   return (

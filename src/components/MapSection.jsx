@@ -63,7 +63,7 @@ function MapUpdater({ route }) {
   return null;
 }
 
-export default function MapSection({ activeSpotId, activeFerryRoute, language = 'en' }) {
+export default function MapSection({ activeSpotId, language = 'en' }) {
   const [distances, setDistances] = useState({});
   const [selectedRoute, setSelectedRoute] = useState(null);
   const [isFerry, setIsFerry] = useState(false);
@@ -146,20 +146,10 @@ export default function MapSection({ activeSpotId, activeFerryRoute, language = 
     }
   }, [activeSpotId, distances]);
 
-  const [expandedCardId, setExpandedCardId] = useState(null);
 
-  const handleCardClick = (spotId) => {
-    if (expandedCardId === spotId) {
-      // Second tap: show route and scroll to map
-      handleSelectRoute(spotId);
-    } else {
-      // First tap: expand the card
-      setExpandedCardId(spotId);
-    }
-  };
 
   return (
-    <section id="map-section" className="section animate-fade-in-up delay-200" style={{ paddingBottom: '100px' }}>
+    <section id="map-section" className="section animate-fade-in-up delay-200">
       <div className="section-header">
         <h2 className="section-title">{t.title}</h2>
         <p className="section-subtitle" style={{ fontSize: '0.9rem', color: 'var(--color-text-light)', marginTop: '4px' }}>
@@ -172,7 +162,7 @@ export default function MapSection({ activeSpotId, activeFerryRoute, language = 
           center={AIRBNB_LOCATION.coordinates} 
           zoom={10} 
           style={{ height: '100%', width: '100%', zIndex: 0 }}
-          scrollWheelZoom={false}
+          scrollWheelZoom={typeof window !== 'undefined' && window.innerWidth >= 1024}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -222,24 +212,22 @@ export default function MapSection({ activeSpotId, activeFerryRoute, language = 
 
       <div className="map-list">
         {MUST_VISIT_SPOTS.map((spot) => {
-          const isExpanded = expandedCardId === spot.id;
-          
           return (
             <div 
               key={`list-${spot.id}`} 
               className="map-list-item" 
-              onClick={() => handleCardClick(spot.id)}
-              style={{ cursor: 'pointer', transition: 'all 0.3s ease', alignItems: isExpanded ? 'flex-start' : 'center' }}
+              onClick={() => handleSelectRoute(spot.id)}
+              style={{ cursor: 'pointer', transition: 'all 0.3s ease', alignItems: 'center' }}
             >
-              <img src={spot.image} alt={spot.title[language]} className="map-list-img" style={{ width: isExpanded ? '80px' : '56px', height: isExpanded ? '80px' : '56px', transition: 'all 0.3s ease' }} loading="lazy" />
+              <img src={spot.image} alt={spot.title[language]} className="map-list-img" style={{ width: '56px', height: '56px', transition: 'all 0.3s ease' }} loading="lazy" />
               <div className="map-list-info">
                 <h4 className="map-list-title">{spot.title[language]}</h4>
                 <p className="map-list-desc" style={{ 
                   fontSize: '0.85rem', 
                   color: 'var(--color-text-muted)', 
                   marginBottom: '8px',
-                  display: isExpanded ? 'block' : '-webkit-box',
-                  WebkitLineClamp: isExpanded ? 'unset' : 2,
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical',
                   overflow: 'hidden',
                   transition: 'all 0.3s ease'

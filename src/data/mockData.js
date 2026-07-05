@@ -77,7 +77,7 @@ export const MUST_VISIT_SPOTS = [
       tr: 'Konik bir uçurumun üzerine inşa edilmiş, unutulmaz güzellikte terk edilmiş bir ortaçağ yerleşimi.'
     },
     type: 'spot',
-    coordinates: [38.3951, 26.0125],
+    coordinates: [38.40304, 26.02015],
     image: anavatosImage,
   },
 

@@ -16,11 +16,15 @@ function App() {
 
   return (
     <>
-      <main>
-        <Hero language={language} setLanguage={setLanguage} />
-        <PropertyCard language={language} />
-        <LocalGuide onSelectSpot={handleSelectSpot} language={language} />
-        <MapSection activeSpotId={activeSpotId} language={language} />
+      <main className="app-container">
+        <div className="left-column">
+          <Hero language={language} setLanguage={setLanguage} />
+          <PropertyCard language={language} />
+          <LocalGuide language={language} />
+        </div>
+        <div className="right-column">
+          <MapSection activeSpotId={activeSpotId} language={language} />
+        </div>
       </main>
       <BottomNav language={language} />
     </>
