@@ -27,7 +27,7 @@ export const AIRBNB_LOCATION = {
   id: 'home',
   title: 'Chios Getaway Airbnb',
   address: 'Stefanou Tsouri 69 (Tsouri 69), Chios Town, 82100',
-  coordinates: [38.3678, 26.1361],
+  coordinates: [38.368, 26.137],
 };
 
 export const MUST_VISIT_SPOTS = [
